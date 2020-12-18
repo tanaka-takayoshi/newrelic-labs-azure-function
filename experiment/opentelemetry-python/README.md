@@ -1,0 +1,1 @@
+OpenTelemetryを使ってPythonの関数を計測するサンプル。

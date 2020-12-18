@@ -1,0 +1,46 @@
+<html>
+    <head>
+      <!-- TODO New Relic Browserのinstrument用scriptタグをここに挿入 -->    
+      <meta charset="utf-8" />
+      <title>DemoForm</title> 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script>
+        $(function() {
+          var URL = 'https://nrazpythonfunction.azurewebsites.net/api/MyHttpPythonFunction?name=' + encodeURI($('#name').val());
+          $('#submit').click(function() {
+            myInteraction = newrelic.interaction()
+            $.ajax({
+              method: 'GET',
+              url: URL
+            })
+            .done(function(msg) {
+              console.log(msg);
+            })
+            .fail(function(msg) {
+              console.log(msg);
+            })
+            .always(function() {
+              $.ajax({
+                method: 'GET',
+                url: URL
+              })
+              .done(function(msg) {
+                console.log(msg);
+              })
+              .fail(function(msg) {
+                console.log(msg);
+              })
+              .always(function() {
+                myInteraction.save()
+                alert('complete');
+              });
+            });
+          });
+        });
+      </script>            
+    </head>
+    <body>
+        <input type="text" id="name" value="" />
+        <input type="button" id="submit" value="Go" />
+    </body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "name": "newrelic-labs-python:MyHttpPythonFunction.__init__.main (python3.8)",
+      "invokeTarget": {
+        "target": "code",
+        "projectRoot": "",
+        "lambdaHandler": "MyHttpPythonFunction.__init__.main"
+      },
+      "lambda": {
+        "runtime": "python3.8",
+        "payload": {},
+        "environmentVariables": {
+          "NEW_RELIC_INSERT_KEY": "4kwezzd3wvaerf470tms7akgubonjgduj1z46i8j"
+        }
+      }
+    },
+    {
+      "name": "Attach to Python Functions",
+      "type": "python",
+      "request": "attach",
+      "port": 9091,
+      "preLaunchTask": "func: host start",
+    }
+  ]
+}
